@@ -1,10 +1,20 @@
 import React, {FC, useCallback, useState} from 'react';
-import { IonContent, IonHeader, IonSelect, IonSelectOption, IonAlert, IonButtons, IonBackButton, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonCard,IonGrid, IonRow, IonCol, IonButton, IonInput, IonRouterLink } from '@ionic/react';
+import { IonContent, IonHeader,IonAlert, IonButtons, IonBackButton, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonCard,IonGrid, IonRow, IonCol, IonButton, IonInput, IonRouterLink } from '@ionic/react';
+// import { auth } from '..';
+import { useHistory } from 'react-router';
 
 const Register: React.FC = () => {
+
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [alertText , setAlertText] = useState('');
+// const history = useHistory()
+// const location = useLocation();
+
+
+// useEffect(() => {
+//   if (auth.currentUser)history.push('/')
+// },[history, location]);
 
   const onEmailChange = useCallback((e) => setEmail(e.detail?.value), []);
   const onPasswordChange =  useCallback((e) => setPassword(e.detail?.value), []);
@@ -102,7 +112,7 @@ const [alertText , setAlertText] = useState('');
           </IonItem>
           
           <p className="ion-text-center">Already a member?</p>
-          <p className="ion-text-center"><IonRouterLink href="/Login">Login here</IonRouterLink> </p>
+          <p className="ion-text-center"><IonRouterLink href="/">Login here</IonRouterLink> </p>
     </IonCard>
     <IonGrid>
               <IonRow>

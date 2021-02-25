@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import React from 'react';
+import React, {createContext, FC, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
@@ -17,8 +17,24 @@ firebase.initializeApp({
 });
 
 export const auth = firebase.auth();
+type User = firebase.User
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const UserContext = createContext<User | null>(null)
+const UserProvider: FC =({children}) => {
+    const [user, setUser] = useState <User | null>(null)
+
+//     useEffect(() => {
+//         auth.onAuthStateChanged(userAuth => setUser=(userAuth));
+// },[])
+
+return <UserContext.Provider value = {user}> {children} </UserContext.Provider>;
+};
+
+
+ReactDOM.render(<UserProvider>
+    <App />
+</UserProvider>, 
+document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

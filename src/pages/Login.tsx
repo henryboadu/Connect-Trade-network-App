@@ -5,11 +5,18 @@ import {auth} from '../';
 
 
 
-const Login: React.FC = () => {
+  const Login: React.FC = () => {
+
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
    const [alertText , setAlertText] = useState('');
    const history = useHistory();
+
+  //  const location = useLocation();
+
+  //  useEffect(() => {
+  //     if (auth.currentUser)history.push('/')
+  //  },[history, location]);
 
    const onEmailChange = useCallback((e) => setEmail(e.detail?.value), []);
    const onPasswordChange =  useCallback((e) => setPassword(e.detail?.value), []);
@@ -23,7 +30,7 @@ const Login: React.FC = () => {
       auth.signInWithEmailAndPassword(email, password).then((response) => {
         console.log('It Actuallly Worked', {response}) 
         history.push('/Home');
-      });
+      }).catch(err => setAlertText(err.message));
     }
   }, [email, password, history]);
    
@@ -49,7 +56,7 @@ const Login: React.FC = () => {
             <IonLabel position="floating">Password</IonLabel>
             <IonInput type="password" placeholder="" onIonChange={onPasswordChange} value={password} ></IonInput>
           </IonItem>   
-          <p className="ion-text-center"><IonRouterLink href="/Login">Forgot Password</IonRouterLink> </p>
+          <p className="ion-text-center"><IonRouterLink href="">Forgot Password</IonRouterLink> </p>
           <p className="ion-text-center">New here?</p>
           <p className="ion-text-center"><IonRouterLink href="/Register">Click here to register</IonRouterLink> </p>
     </IonCard>

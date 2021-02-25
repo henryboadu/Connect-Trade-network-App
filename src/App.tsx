@@ -1,5 +1,5 @@
-import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -10,7 +10,7 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { callOutline, cogOutline, contractOutline, helpCircleOutline, home, peopleCircle, personCircleOutline, personOutline, readerOutline } from 'ionicons/icons';
+import { callOutline, contractOutline,home,personOutline, readerOutline } from 'ionicons/icons';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -20,6 +20,7 @@ import Register from './pages/Register';
 import Projects from './pages/Projects';
 import Events from './pages/Events';
 
+import {UserContext} from './';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -39,20 +40,26 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+
+const user = useContext(UserContext);
+
+  return (
   <IonApp>
-    <IonReactRouter>
+    {user ? (
+      <Home/>
+    ) : (
+      <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/Home" component={Home} exact={true} />
-          <Route path="/About Us" component={About} exact={true} />
           <Route path="/Contact Us" component={Contact} />
           <Route path="/Account" component={Account} />
           <Route path="/Login" component={Login} exact />
           <Route path="/Register" component={Register} exact />
           <Route path="/Events" component={Events} exact />
           <Route path="/Projects" component={Projects} exact />
-          <Route path="/" render={() => <Redirect to="/Home" />} exact={true} />
+          <Route exact path="/" component={Login}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/Home">
@@ -86,7 +93,10 @@ const App: React.FC = () => (
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+    )}
+    
   </IonApp>
 );
+        }
 
 export default App;

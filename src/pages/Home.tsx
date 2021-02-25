@@ -31,8 +31,8 @@ import {
          
 import { pin, wifi, wine, warning, walk, personOutline, peopleCircleOutline, peopleOutline, settings, medalOutline, syncCircle, accessibility } from 'ionicons/icons';
 
-import { auth } from '..';
-import { useHistory } from 'react-router';
+// import { auth } from '..';
+// import { useHistory, useLocation } from 'react-router';
 
 const slideOpts = {
   initialSlide: 1,
@@ -41,11 +41,13 @@ const slideOpts = {
 
 const Home: React.FC = () => {
 
-  const history  = useHistory()
-  useEffect(() => {
-    if (!auth.currentUser) history.push ('/login');
-    else console.log(auth.currentUser);
-  }, [history])
+  // const history  = useHistory()
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   // if (!auth.currentUser) history.push ('/login');
+  //   // else console.log(auth.currentUser);
+  // }, [history, location])
 
   return (
     <IonPage>
