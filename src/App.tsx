@@ -1,3 +1,4 @@
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -6,13 +7,18 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { callOutline, cogOutline, contractOutline, helpCircleOutline, home, peopleCircle, personCircleOutline, personOutline, readerOutline } from 'ionicons/icons';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Account from './pages/Account';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Projects from './pages/Projects';
+import Events from './pages/Events';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,32 +44,45 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
+          <Route path="/Home" component={Home} exact={true} />
+          <Route path="/About Us" component={About} exact={true} />
+          <Route path="/Contact Us" component={Contact} />
+          <Route path="/Account" component={Account} />
+          <Route path="/Login" component={Login} exact />
+          <Route path="/Register" component={Register} exact />
+          <Route path="/Events" component={Events} exact />
+          <Route path="/Projects" component={Projects} exact />
+          <Route path="/" render={() => <Redirect to="/Home" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="Home" href="/Home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          {/* <IonTabButton tab="About Us" href="/About Us">
+            <IonIcon icon={peopleCircle} />
+            <IonLabel>About Us</IonLabel>
+          </IonTabButton> */}
+          <IonTabButton tab="Projects" href="/Projects">
+            <IonIcon icon={readerOutline} />
+            <IonLabel>Projects</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="Events" href="/Events">
+            <IonIcon icon={contractOutline} />
+            <IonLabel>Events</IonLabel>
           </IonTabButton>
+          {/* <IonTabButton tab="Login" href="/Login">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Account</IonLabel>
+          </IonTabButton> */}
+          <IonTabButton tab="Account" href="/Account">
+            <IonIcon icon={personOutline} />
+            <IonLabel>Account</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="Contact Us" href="/Contact Us">
+            <IonIcon icon={callOutline} />
+            <IonLabel>Contact Us</IonLabel>
+          </IonTabButton> 
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
