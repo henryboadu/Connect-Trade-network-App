@@ -1,7 +1,8 @@
 import React, {FC, useCallback, useState} from 'react';
 import { IonContent, IonHeader,IonAlert, IonButtons, IonBackButton, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonCard,IonGrid, IonRow, IonCol, IonButton, IonInput, IonRouterLink } from '@ionic/react';
 // import { auth } from '..';
-import { useHistory } from 'react-router';
+
+
 
 const Register: React.FC = () => {
 
@@ -43,14 +44,14 @@ const [alertText , setAlertText] = useState('');
         </IonHeader>
     <IonCard>
       <IonItem>
-            {/* <IonLabel position="floating">First Name</IonLabel>
+            <IonLabel position="floating">First Name</IonLabel>
             <IonInput type="text" placeholder=""></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Last Name</IonLabel>
             <IonInput type="text" placeholder=""></IonInput>
           </IonItem>
-          <IonItem> */}
+          <IonItem>
             <IonLabel position="floating">Email</IonLabel>
             <IonInput type="text" placeholder=""onIonChange={onEmailChange} value={email} ></IonInput>
           </IonItem>
@@ -63,7 +64,7 @@ const [alertText , setAlertText] = useState('');
             <IonInput type="text" placeholder=""></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel>Industry</IonLabel> */}
+            <IonLabel>Industry</IonLabel> 
             {/* <IonSelect value={hairColor} okText="Okay" cancelText="Dismiss" onIonChange={e => setHairColor(e.detail.value)}> */}
             {/* <IonSelect>
               <IonSelectOption value="Avertising">Avertising & Media</IonSelectOption>

@@ -43,12 +43,10 @@ import './theme/variables.css';
 const App: React.FC = () => {
 
 const user = useContext(UserContext);
-
   return (
   <IonApp>
-    {user ? (
-      <Home/>
-    ) : (
+    {/* {user? ( <Login/>) : */}
+     (
       <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -66,10 +64,6 @@ const user = useContext(UserContext);
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          {/* <IonTabButton tab="About Us" href="/About Us">
-            <IonIcon icon={peopleCircle} />
-            <IonLabel>About Us</IonLabel>
-          </IonTabButton> */}
           <IonTabButton tab="Projects" href="/Projects">
             <IonIcon icon={readerOutline} />
             <IonLabel>Projects</IonLabel>
@@ -78,10 +72,6 @@ const user = useContext(UserContext);
             <IonIcon icon={contractOutline} />
             <IonLabel>Events</IonLabel>
           </IonTabButton>
-          {/* <IonTabButton tab="Login" href="/Login">
-            <IonIcon icon={personOutline} />
-            <IonLabel>Account</IonLabel>
-          </IonTabButton> */}
           <IonTabButton tab="Account" href="/Account">
             <IonIcon icon={personOutline} />
             <IonLabel>Account</IonLabel>
@@ -93,7 +83,7 @@ const user = useContext(UserContext);
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
-    )}
+    )
     
   </IonApp>
 );

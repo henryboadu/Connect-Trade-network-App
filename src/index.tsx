@@ -18,14 +18,14 @@ firebase.initializeApp({
 
 export const auth = firebase.auth();
 type User = firebase.User
-
-export const UserContext = createContext<User | null>(null)
+  
+export const UserContext = createContext<User | null>(null);
 const UserProvider: FC =({children}) => {
     const [user, setUser] = useState <User | null>(null)
 
-//     useEffect(() => {
-//         auth.onAuthStateChanged(userAuth => setUser=(userAuth));
-// },[])
+    useEffect(() => {
+        auth.onAuthStateChanged((userAuth) => setUser(userAuth));
+},[])
 
 return <UserContext.Provider value = {user}> {children} </UserContext.Provider>;
 };

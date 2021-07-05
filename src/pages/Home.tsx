@@ -47,7 +47,7 @@ const Home: React.FC = () => {
   // useEffect(() => {
   //   // if (!auth.currentUser) history.push ('/login');
   //   // else console.log(auth.currentUser);
-  // }, [history, location])
+  // }, [history)
 
   return (
     <IonPage>

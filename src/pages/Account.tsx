@@ -1,4 +1,4 @@
-import React, {FC, useContext}  from 'react';
+import React, {FC, useContext, useEffect}  from 'react';
 import { IonButton, IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar,} from '@ionic/react';
 
 
@@ -10,16 +10,16 @@ import { useHistory, useLocation } from 'react-router';
   
 
 const Account: React.FC = () => {
-    // const history  = useHistory()
-    // // const location = useLocation();
+    const history  = useHistory()
+    // const location = useLocation();
 
-// useEffect(() => {
-  // if (!auth.currentUser) history.push ('/login');
-  // else console.log(auth.currentUser);
-// }, [history, location]);
-// console.log(auth.currentUser);
+useEffect(() => {
+  if (!auth.currentUser) history.push ('/login');
+  else console.log(auth.currentUser);
+}, [history]);
+console.log(auth.currentUser);
 
-const user = useContext(UserContext);
+const user = useContext(UserContext)
 
   return (
     <IonPage >
