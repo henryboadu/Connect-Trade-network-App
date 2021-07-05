@@ -1,5 +1,5 @@
-import React, {FC, useContext, useEffect}  from 'react';
-import { IonButton, IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar,} from '@ionic/react';
+import React, {FC, useCallback, useContext, useEffect, useState}  from 'react';
+import { IonButton, IonCard, IonContent, IonHeader, IonItem, IonList, IonPage, IonRouterLink, IonText, IonTitle, IonToolbar,} from '@ionic/react';
 
 
 // import './Account.css';
@@ -19,7 +19,16 @@ useEffect(() => {
 }, [history]);
 console.log(auth.currentUser);
 
-const user = useContext(UserContext)
+const user = useContext(UserContext);
+const [isSigningOut, setIsSigningOut] = useState(false )
+
+const onSignoutClick = useCallback(() => {
+setIsSigningOut(true)
+auth.signOut().catch(err => { console.log({err})
+setIsSigningOut(false)
+})
+}, []);
+
 
   return (
     <IonPage >
@@ -32,8 +41,9 @@ const user = useContext(UserContext)
         <div className="pgbackground">
           <IonList>
             <IonItem>
-              <IonTitle> Welcome {user?.email}!</IonTitle>
-           <IonButton> Sign out</IonButton> 
+              <IonText>Welcome {user?.email} </IonText>
+            <IonCard color="warning"><p className="ion-text-center" ><IonRouterLink href="/Login">Sign Out</IonRouterLink> </p></IonCard> 
+           {/* <IonButton disabled ={isSigningOut} onClick={onSignoutClick} > Sign {isSigningOut ? 'ing' : ''} Out </IonButton>  */}
             </IonItem>
           </IonList>
           
@@ -44,3 +54,5 @@ const user = useContext(UserContext)
 };
 
 export default Account;
+
+{/* <IonRouterLink href="/">Login here</IonRouterLink> */}
