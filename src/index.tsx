@@ -25,7 +25,7 @@ const UserProvider: FC =({children}) => {
 
     useEffect(() => {
         auth.onAuthStateChanged((userAuth) => setUser(userAuth));
-},[])
+},[]);
 
 return <UserContext.Provider value = {user}> {children} </UserContext.Provider>;
 };

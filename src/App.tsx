@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -41,12 +41,21 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App: React.FC = () => {
-
 const user = useContext(UserContext);
+console.log({user});
+
   return (
   <IonApp>
-    {/* {user? ( <Login/>) : */}
-     (
+    {/* {user? ( 
+    <IonReactRouter>
+        <IonRouterOutlet>
+
+          <Route component={Login} exact path="/" />
+          <Redirect to = "/" />
+    
+      </IonRouterOutlet>
+  </IonReactRouter>
+  ) : ( */}
       <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>

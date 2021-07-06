@@ -1,6 +1,8 @@
 import React, {FC, useCallback, useState} from 'react';
-import { IonContent, IonHeader,IonAlert, IonButtons, IonBackButton, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonCard,IonGrid, IonRow, IonCol, IonButton, IonInput, IonRouterLink } from '@ionic/react';
-// import { auth } from '..';
+import { IonContent, IonHeader,IonAlert, IonButtons, IonBackButton, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonCard,IonGrid, IonRow, IonCol, IonButton, IonInput, IonRouterLink, IonSelect, IonSelectOption } from '@ionic/react';
+import { auth } from '..';
+import { useHistory } from 'react-router';
+
 
 
 
@@ -8,8 +10,14 @@ const Register: React.FC = () => {
 
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
+const [industry, setIndustry] = useState('');
+const [company, setcompany] = useState('');
+const [telephone, settelephone] = useState('');
+const [firstname, setfirstname] = useState('');
+const [lastname, setlastname] = useState('');
 const [alertText , setAlertText] = useState('');
-// const history = useHistory()
+const history = useHistory()
+
 // const location = useLocation();
 
 
@@ -23,11 +31,19 @@ const [alertText , setAlertText] = useState('');
     const onLoginClick = useCallback(() => {
       if (email.length === 0) setAlertText("Email required");
       else if (password.length === 0 ) setAlertText("Password Required");
+      else if (industry.length === 0 ) setAlertText("Kindly Select Indutry");
+      else if (company.length === 0 ) setAlertText("Company Name Required");
+      else if (telephone.length === 0 ) setAlertText("Telephone Number Required");
+      else if (firstname.length === 0 ) setAlertText("First Name Required");
+      else if (lastname.length === 0 ) setAlertText("Last Name Required");
       else if (password.length < 6) setAlertText('Password  Too Short');
         else {
-          console.log('Do Register');
+          auth
+          .createUserWithEmailAndPassword(email, password)
+          .catch(err =>setAlertText(err.message))
+          history.push('/Home');
       }
-    }, [password, email.length]);
+    }, [password, email]);
   
     const onDismiss = useCallback(() => setAlertText(''), []) 
 
@@ -55,7 +71,7 @@ const [alertText , setAlertText] = useState('');
             <IonLabel position="floating">Email</IonLabel>
             <IonInput type="text" placeholder=""onIonChange={onEmailChange} value={email} ></IonInput>
           </IonItem>
-          {/* <IonItem>
+          <IonItem>
             <IonLabel position="floating">Telephone Number</IonLabel>
             <IonInput type="number" placeholder=""></IonInput>
           </IonItem> 
@@ -65,8 +81,8 @@ const [alertText , setAlertText] = useState('');
           </IonItem>
           <IonItem>
             <IonLabel>Industry</IonLabel> 
-            {/* <IonSelect value={hairColor} okText="Okay" cancelText="Dismiss" onIonChange={e => setHairColor(e.detail.value)}> */}
-            {/* <IonSelect>
+            {/* <IonSelect value={hairColor} okText="Okay" cancelText="Dismiss" onIonChange={e => setHairColor(e.detail.value)}/> */}
+            <IonSelect>
               <IonSelectOption value="Avertising">Avertising & Media</IonSelectOption>
               <IonSelectOption value="Agriculture">Agriculture, Fishing & Forestry </IonSelectOption>
               <IonSelectOption value="Arts">Arts, Culture & Entertainment</IonSelectOption>
@@ -106,7 +122,7 @@ const [alertText , setAlertText] = useState('');
               <IonSelectOption value="Sports">Sports & Recreation</IonSelectOption>
               <IonSelectOption value="Transportation">Transportation </IonSelectOption>
             </IonSelect>
-          </IonItem> */}
+          </IonItem>
           <IonItem>
             <IonLabel position="floating">Password</IonLabel>
             <IonInput type="password" placeholder="" onIonChange={onPasswordChange} value={password}></IonInput>
